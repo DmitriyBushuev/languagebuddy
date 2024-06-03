@@ -9,7 +9,6 @@ export interface PageProps extends PropsWithChildren {
 
 export const Page: FC<PageProps> = ({ title, children, disclaimer }) => (
   <div className={styles.root}>
-    <h1>{title}</h1>
     {disclaimer && <div className={styles.disclaimer}>{disclaimer}</div>}
     {children}
   </div>

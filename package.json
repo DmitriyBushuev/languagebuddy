@@ -10,12 +10,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@tma.js/sdk-react": "^2.1.4",
-    "@tonconnect/ui-react": "^2.0.2",
+    "@tma.js/sdk-react": "^2.2.2",
+    "@tonconnect/ui-react": "^2.0.3",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "@vitejs/plugin-react": "^4.3.0",
     "eruda": "^3.0.1",
     "next": "14.2.3",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "vite": "^5.2.12"
   },
   "devDependencies": {
     "@types/node": "^20.12.11",
