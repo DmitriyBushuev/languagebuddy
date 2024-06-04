@@ -82,14 +82,15 @@ function Inner() {
 }
 
 export default function TONConnectPage() {
-  const isTma = useIsTMA()
-  if (!isTma) return <></>
+  return <></>
+  // const isTma = useIsTMA()
+  // if (!isTma) return <></>
 
-  const didMount = useDidMount();
+  // const didMount = useDidMount();
 
-  return (
-    <Page title="TON Connect">
-      {didMount ? <Inner/> : 'Loading'}
-    </Page>
-  );
+  // return (
+  //   <Page title="TON Connect">
+  //     {didMount ? <Inner/> : 'Loading'}
+  //   </Page>
+  // );
 };
