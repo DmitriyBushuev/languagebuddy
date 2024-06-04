@@ -9,8 +9,9 @@ import {
   bindThemeParamsCSSVars,
   bindViewportCSSVars,
   isSSR,
+  isTMA
 } from '@tma.js/sdk-react';
-import { type FC, useEffect, useMemo } from 'react';
+import { type FC, useEffect, useMemo, useState } from 'react';
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
@@ -19,6 +20,9 @@ import { useRouter as useNavigationRouter } from 'next/navigation';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 
 import './global.css';
+import { useIsTMA } from '@/hooks/useIsTMA';
+import { AppRoot } from '@telegram-apps/telegram-ui';
+import '@telegram-apps/telegram-ui/dist/styles.css';
 
 const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   <div>
@@ -77,8 +81,8 @@ const App: FC<AppProps> = ({ pageProps, Component }) => {
 
   return (
     <>
-      <BackButtonManipulator/>
-      <Component {...pageProps}/>
+      <BackButtonManipulator />
+      <Component {...pageProps} />
     </>
   );
 };
@@ -100,16 +104,23 @@ const Inner: FC<AppProps> = (props) => {
   return (
     <TonConnectUIProvider manifestUrl={manifestUrl}>
       <SDKProvider acceptCustomStyles debug={debug}>
-        <App {...props}/>
+        <App {...props} />
       </SDKProvider>
     </TonConnectUIProvider>
   );
 };
 
 export default function CustomApp(props: AppProps) {
+  const isTApp = useIsTMA()
+
   return (
-    <ErrorBoundary fallback={ErrorBoundaryError}>
-      <Inner {...props}/>
-    </ErrorBoundary>
+    <AppRoot>
+      <ErrorBoundary fallback={ErrorBoundaryError}>
+        {isTApp ?
+          <Inner {...props} /> :
+          <props.Component {...props} />
+        }
+      </ErrorBoundary>
+    </AppRoot>
   );
 };

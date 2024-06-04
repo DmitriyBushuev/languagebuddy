@@ -1,30 +1,23 @@
-import { Page } from '@/components/Page/Page';
-import { Link } from '@/components/Link/Link';
-import { routes } from '@/navigation/routes';
-
-import styles from './styles.module.css';
+import { AppRoot, FixedLayout, Tabbar, Text } from '@telegram-apps/telegram-ui';
+import React, { useState } from 'react';
 
 export default function IndexPage() {
+  const [currentTab, setCurrentTab] = useState("0");
+
   return (
-    <Page title="Home Page">
-      <p>
-        This page is a home page in this boilerplate. You can use the links below to visit other
-        pages with their own functionality.
-      </p>
-      <ul className={styles.links}>
-        {routes.map(({ path, title, icon }) => title && (
-          <li className={styles.linkItem} key={path}>
-            <Link className={styles.link} href={path}>
-              {icon && (
-                <i className={styles.linkIcon}>
-                  {icon}
-                </i>
-              )}
-              {title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </Page>
+    <FixedLayout>
+      <FixedLayout vertical="top" style={{ display: currentTab == "1" ? 'none' : 'inherit' }}>
+        <Text>Test</Text>
+      </FixedLayout>
+      <Tabbar>
+
+        <Tabbar.Item key={1} text='Home' selected={"0" === currentTab} onClick={() => setCurrentTab("0")}>
+
+        </Tabbar.Item>
+        <Tabbar.Item key={2} text='Library' selected={"1" === currentTab} onClick={() => setCurrentTab("1")}>
+
+        </Tabbar.Item>
+      </Tabbar>
+    </FixedLayout>
   );
 };
