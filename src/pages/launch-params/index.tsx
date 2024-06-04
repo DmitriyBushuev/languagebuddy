@@ -5,8 +5,12 @@ import { Link } from '@/components/Link/Link';
 import { Page } from '@/components/Page/Page';
 import { useDidMount } from '@/hooks/useDidMount';
 import { useMemo } from 'react';
+import { useIsTMA } from '@/hooks/useIsTMA';
 
 export default function LaunchParamsPage() {
+  const isTma = useIsTMA()
+  if (!isTma) return <></>
+
   const didMount = useDidMount();
   const lp = useMemo(() => {
     return didMount ? retrieveLaunchParams() : {} as Record<string, string>;

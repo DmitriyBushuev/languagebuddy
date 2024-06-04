@@ -8,6 +8,7 @@ import { Page } from '@/components/Page/Page';
 
 import styles from './styles.module.css';
 import { useDidMount } from '@/hooks/useDidMount';
+import { useIsTMA } from '@/hooks/useIsTMA';
 
 function Inner() {
   const wallet = useTonWallet();
@@ -81,6 +82,9 @@ function Inner() {
 }
 
 export default function TONConnectPage() {
+  const isTma = useIsTMA()
+  if (!isTma) return <></>
+
   const didMount = useDidMount();
 
   return (

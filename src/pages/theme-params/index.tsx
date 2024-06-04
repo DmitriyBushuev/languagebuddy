@@ -3,8 +3,12 @@ import { useThemeParams } from '@tma.js/sdk-react';
 import { DisplayData } from '@/components/DisplayData/DisplayData';
 import { Link } from '@/components/Link/Link';
 import { Page } from '@/components/Page/Page';
+import { useIsTMA } from '@/hooks/useIsTMA';
 
 export default function ThemeParamsPage() {
+  const isTma = useIsTMA()
+  if (!isTma) return <></>
+
   const themeParams = useThemeParams(true);
 
   return (

@@ -7,6 +7,7 @@ import { Page } from '@/components/Page/Page';
 import { useDidMount } from '@/hooks/useDidMount';
 
 import styles from './styles.module.css';
+import { useIsTMA } from '@/hooks/useIsTMA';
 
 function getUserRows(user: User): DisplayDataRow[] {
   return [
@@ -24,6 +25,9 @@ function getUserRows(user: User): DisplayDataRow[] {
 }
 
 export default function InitDataPage() {
+  const isTma = useIsTMA()
+  if (!isTma) return <></>
+
   const didMount = useDidMount();
   const initData = useInitData(true);
   const initDataRaw = useMemo(() => didMount ? retrieveLaunchParams().initDataRaw : '', [didMount]);
@@ -88,27 +92,27 @@ export default function InitDataPage() {
       <>
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Init data</h2>
-          <DisplayData rows={initDataRows}/>
+          <DisplayData rows={initDataRows} />
         </div>
 
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>User</h2>
           {userRows
-            ? <DisplayData rows={userRows}/>
+            ? <DisplayData rows={userRows} />
             : <i>User information missing</i>}
         </div>
 
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Receiver</h2>
           {receiverRows
-            ? <DisplayData rows={receiverRows}/>
+            ? <DisplayData rows={receiverRows} />
             : <i>Receiver information missing</i>}
         </div>
 
         <div className={styles.section}>
           <h2 className={styles.sectionTitle}>Chat</h2>
           {chatRows
-            ? <DisplayData rows={chatRows}/>
+            ? <DisplayData rows={chatRows} />
             : <i>Chat information missing</i>}
         </div>
       </>
