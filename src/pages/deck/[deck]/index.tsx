@@ -1,6 +1,6 @@
 import { getDeck, getDecks } from "@/api/storage";
 import { Deck } from "@/types/deck";
-import { AppRoot, Button, Card, FixedLayout, List, Text } from "@telegram-apps/telegram-ui";
+import { AppRoot, Button, Card, Cell, FixedLayout, List, Text } from "@telegram-apps/telegram-ui";
 import { CardCell } from "@telegram-apps/telegram-ui/dist/components/Blocks/Card/components/CardCell/CardCell";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
@@ -27,32 +27,38 @@ const DeckDetails: NextPage<DeckDetailsProps> = ({ deck }) => {
             fetchData()
                 .catch(console.error);
         }
-    }, [])
+    })
 
-    return <div><Card style={{ width: '100%' }}>
-        <React.Fragment key=".0">
-            <CardCell
-                readOnly
-                subtitle={deckDetails?.description}
-            >
-                {deckDetails?.name}
-            </CardCell>
-            <CardCell multiline={true}>
-                Cards to repeate: 20<br />
-                Total cards: 20
-            </CardCell>
-        </React.Fragment>
-    </Card>
-    <FixedLayout vertical="bottom">
-        <Button style={{width: '100%', borderRadius: 0, borderTopLeftRadius: 12, borderTopRightRadius: 12}}>Start</Button>
-    </FixedLayout>
+    return <div>
+
+        <Card style={{ width: '100%' }}>
+            <React.Fragment key=".0">
+                <Cell subtitle={deckDetails?.description} multiline={true}>
+                    {deckDetails?.name}
+                </Cell>
+                <Cell>
+                    Cards to review: 20 <br/>
+                    Total cards: 20
+                </Cell>
+                {/* <CardCell
+                    readOnly
+                    subtitle={deckDetails?.description}
+                >
+                    {deckDetails?.name}
+                </CardCell> */}
+            </React.Fragment>
+        </Card>
+        <FixedLayout vertical="bottom">
+            <Button style={{ width: '100%', borderRadius: 0, borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>Start</Button>
+        </FixedLayout>
+
     </div>
 
 }
 
-interface DeckDetailsParams extends ParsedUrlQuery {
-    deck: string
-}
+// interface DeckDetailsParams extends ParsedUrlQuery {
+//     deck: string
+// }
 
 // export const getStaticPaths: GetStaticPaths = async () => {
 //     const decks = await getDecks()

@@ -24,8 +24,8 @@ export default function Home() {
         <Section header="My decks">
             <List>
                 {decs.map((deck) => (
-                    <Link href={"/deck/" + deck.id}>
-                        <Cell key={deck.name} before={<FaFlagUsa />} after={"20"} style={{ background: theme.bgColor, borderRadius: theme.borderRadius }}>
+                    <Link key={deck.name} href={"/deck/" + deck.id}>
+                        <Cell before={<FaFlagUsa />} after={"20"} style={{ background: theme.bgColor, borderRadius: theme.borderRadius }}>
                             {deck.name}
                         </Cell>
                     </Link>
