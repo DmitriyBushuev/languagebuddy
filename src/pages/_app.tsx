@@ -23,6 +23,8 @@ import './global.css';
 import { useIsTMA } from '@/hooks/useIsTMA';
 import { AppRoot } from '@telegram-apps/telegram-ui';
 import '@telegram-apps/telegram-ui/dist/styles.css';
+import { getTelegramData } from '@telegram-apps/telegram-ui/dist/helpers/telegram';
+
 
 const ErrorBoundaryError: FC<{ error: unknown }> = ({ error }) => (
   <div>
@@ -112,6 +114,7 @@ const Inner: FC<AppProps> = (props) => {
 
 export default function CustomApp(props: AppProps) {
   const isTApp = useIsTMA()
+  setBackgroundAsSecondary()
 
   return (
     <AppRoot>
@@ -123,4 +126,13 @@ export default function CustomApp(props: AppProps) {
       </ErrorBoundary>
     </AppRoot>
   );
+};
+
+export const setBackgroundAsSecondary = () => {
+  const telegramData = getTelegramData();
+  if (!telegramData) {
+    return;
+  }
+
+  telegramData.setBackgroundColor(telegramData.themeParams.secondary_bg_color);
 };
