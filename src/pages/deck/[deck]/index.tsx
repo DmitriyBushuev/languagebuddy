@@ -34,10 +34,10 @@ const DeckDetails: NextPage<DeckDetailsProps> = ({ deck }) => {
 
         <Card style={{ width: '100%', background: theme.bgColor }}>
             <React.Fragment key=".0">
-                <Cell subtitle={deckDetails?.description} multiline={true}>
+                <Cell style={{pointerEvents: 'none'}} subtitle={deckDetails?.description} multiline={true}>
                     {deckDetails?.name}
                 </Cell>
-                <Cell>
+                <Cell style={{pointerEvents: 'none'}}>
                     Cards to review: 20 <br/>
                     Total cards: 20
                 </Cell>
