@@ -1,4 +1,5 @@
 import { getDeck, getDecks } from "@/api/storage";
+import { Link } from "@/components/Link/Link";
 import { Deck } from "@/types/deck";
 import { theme } from "@/ui/theme";
 import { AppRoot, Button, Card, Cell, FixedLayout, List, Text } from "@telegram-apps/telegram-ui";
@@ -34,11 +35,11 @@ const DeckDetails: NextPage<DeckDetailsProps> = ({ deck }) => {
 
         <Card style={{ width: '100%', background: theme.bgColor }}>
             <React.Fragment key=".0">
-                <Cell style={{pointerEvents: 'none'}} subtitle={deckDetails?.description} multiline={true}>
+                <Cell style={{ pointerEvents: 'none' }} subtitle={deckDetails?.description} multiline={true}>
                     {deckDetails?.name}
                 </Cell>
-                <Cell style={{pointerEvents: 'none'}}>
-                    Cards to review: 20 <br/>
+                <Cell style={{ pointerEvents: 'none' }}>
+                    Cards to review: 20 <br />
                     Total cards: 20
                 </Cell>
                 {/* <CardCell
@@ -50,7 +51,9 @@ const DeckDetails: NextPage<DeckDetailsProps> = ({ deck }) => {
             </React.Fragment>
         </Card>
         <FixedLayout vertical="bottom">
-            <Button style={{ width: '100%', borderRadius: 0, borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>Start</Button>
+            <Link href={"/deck/" + deckDetails?.id + "/review"}>
+                <Button style={{ width: '100%', borderRadius: 0, borderTopLeftRadius: 12, borderTopRightRadius: 12 }}>Start</Button>
+            </Link>
         </FixedLayout>
 
     </div>
