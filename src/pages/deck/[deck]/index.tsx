@@ -1,5 +1,6 @@
 import { getDeck, getDecks } from "@/api/storage";
 import { Deck } from "@/types/deck";
+import { theme } from "@/ui/theme";
 import { AppRoot, Button, Card, Cell, FixedLayout, List, Text } from "@telegram-apps/telegram-ui";
 import { CardCell } from "@telegram-apps/telegram-ui/dist/components/Blocks/Card/components/CardCell/CardCell";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
@@ -31,7 +32,7 @@ const DeckDetails: NextPage<DeckDetailsProps> = ({ deck }) => {
 
     return <div>
 
-        <Card style={{ width: '100%' }}>
+        <Card style={{ width: '100%', background: theme.bgColor }}>
             <React.Fragment key=".0">
                 <Cell subtitle={deckDetails?.description} multiline={true}>
                     {deckDetails?.name}
